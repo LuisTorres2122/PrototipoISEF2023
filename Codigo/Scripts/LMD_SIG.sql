@@ -319,6 +319,8 @@ insert into tbl_regreporteria(ruta, nombre_archivo, aplicacion, estado) values (
 insert into tbl_regreporteria(ruta, nombre_archivo, aplicacion, estado) values ('Modulos\\CxP\\CardexProveedor.rpt','ReporteCardexProveedor','5203','visible');
 insert into tbl_regreporteria(ruta, nombre_archivo, aplicacion, estado) values ('Modulos\\CxP\\AntiguedadProveedor.rpt','ReporteAntiguedadSaldosProveedor','5204','visible');
 
+insert into tbl_regreporteria(ruta, nombre_archivo, aplicacion, estado) values ('Modulos\\Clinica\\ReportePaciente.rpt','ReportePaciente','2001','visible');
+
 INSERT INTO `tbl_almacen` (`pk_codigo_almacen`, `nombre_almacen`, `estatus_almacen`) VALUES 
 ('1', 'la bendición', '1'),
 ('2', 'la comunidad', '1'),(
@@ -345,3 +347,7 @@ INSERT INTO `tbl_conceptocuentaporcobrar` (`pk_id_concepto_cxc`, `descripcion_co
 
 INSERT INTO `sig`.`tbl_conceptocuentaporpagar` (`pk_id_conceptocuentaporpagar`, `descripcion_conceptocuentaporpagar`, `tipoconcepto_conceptocuentaporpagar`, `estado_conceptocuentaporpagar`) VALUES ('1', 'pago', 'abono', '1');
 INSERT INTO `sig`.`tbl_conceptocuentaporpagar` (`pk_id_conceptocuentaporpagar`, `descripcion_conceptocuentaporpagar`, `tipoconcepto_conceptocuentaporpagar`, `estado_conceptocuentaporpagar`) VALUES ('2', 'devolucion', 'cargo', '1');
+INSERT INTO `sig`.`tbl_referencias` (`pk_idReferencia`, `Descripcion`) VALUES ('1', 'referido Luis Torres');
+INSERT INTO `sig`.`tbl_referencias` (`pk_idReferencia`, `Descripcion`) VALUES ('2', 'referido Josué Bautista');
+
+

@@ -757,4 +757,3 @@ alter table tbl_detallefactura add constraint fk_dfac_efac foreign key (fk_idEnc
 alter table tbl_detallefactura add constraint fk_dfac_exam foreign key (fk_idExamen) references tbl_examen (pk_idExamen);
 alter table tbl_examen add constraint fk_exam_texam foreign key(fk_codtipoExam) references tbl_tipoexamen(pk_codtipoExam);
 
-alter table tbl_movBitacora add constraint fk_mBita_efac foreign key (fk_idEncabezado) references tbl_encabezadofactura (pk_idEncabezado);
