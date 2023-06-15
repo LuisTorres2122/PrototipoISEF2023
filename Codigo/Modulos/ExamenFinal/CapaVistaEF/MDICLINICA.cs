@@ -92,13 +92,13 @@ namespace CapaVistaEF
 
         private void btnProveedor_Click_1(object sender, EventArgs e)
         {
-            /*//Codigo
-            Proveedor proveedor = new Proveedor();
-            proveedor.MdiParent = this;
-            proveedor.Show();
+            //Codigo
+            Paciente paciente = new Paciente();
+            paciente.MdiParent = this;
+            paciente.Show();
 
             //Ocultar submenu
-            hideSubMenu();*/
+            hideSubMenu();
         }
 
         private void btnConcepto_Click(object sender, EventArgs e)
