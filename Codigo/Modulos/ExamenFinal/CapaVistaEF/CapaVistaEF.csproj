@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="facturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="facturacion.Designer.cs">
+      <DependentUpon>facturacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDICLINICA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="facturacion.resx">
+      <DependentUpon>facturacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MDICLINICA.resx">
       <DependentUpon>MDICLINICA.cs</DependentUpon>
     </EmbeddedResource>

@@ -345,3 +345,15 @@ INSERT INTO `tbl_conceptocuentaporcobrar` (`pk_id_concepto_cxc`, `descripcion_co
 
 INSERT INTO `sig`.`tbl_conceptocuentaporpagar` (`pk_id_conceptocuentaporpagar`, `descripcion_conceptocuentaporpagar`, `tipoconcepto_conceptocuentaporpagar`, `estado_conceptocuentaporpagar`) VALUES ('1', 'pago', 'abono', '1');
 INSERT INTO `sig`.`tbl_conceptocuentaporpagar` (`pk_id_conceptocuentaporpagar`, `descripcion_conceptocuentaporpagar`, `tipoconcepto_conceptocuentaporpagar`, `estado_conceptocuentaporpagar`) VALUES ('2', 'devolucion', 'cargo', '1');
+INSERT INTO `sig`.`tbl_pago` (`pk_idPago`, `tipoPago`) VALUES ('1', 'efectivo');
+INSERT INTO `sig`.`tbl_pago` (`pk_idPago`, `tipoPago`) VALUES ('2', 'tarjeta');
+
+INSERT INTO `sig`.`tbl_tipoexamen` (`pk_codtipoExam`, `nom_tipExam`, `descripcion`) VALUES ('1', 'vista', 'examenvista');
+INSERT INTO `sig`.`tbl_tipoexamen` (`pk_codtipoExam`, `nom_tipExam`, `descripcion`) VALUES ('2', 'corazon', 'examencorazon');
+INSERT INTO `sig`.`tbl_tipoexamen` (`pk_codtipoExam`, `nom_tipExam`, `descripcion`) VALUES ('3', 'piel', 'examenpiel');
+
+INSERT INTO `sig`.`tbl_examen` (`pk_idExamen`, `fk_codtipoExam`, `nombreExam`, `precio`) VALUES ('1', '1', 'vista', '500');
+INSERT INTO `sig`.`tbl_examen` (`pk_idExamen`, `fk_codtipoExam`, `nombreExam`, `precio`) VALUES ('2', '2', 'corazon', '1000');
+
+
+
