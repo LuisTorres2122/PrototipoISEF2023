@@ -12,88 +12,9 @@ namespace CapaModeloEF
     {
         Conexion con = new Conexion();
 
-        public OdbcDataAdapter llenartabla(string tabla)
-        {
-            OdbcDataAdapter datatable = null;
-            try
-            {
-                string sql = "select * from " + tabla + ";";
-                 datatable = new OdbcDataAdapter(sql, con.conexion());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error"+ex);
-            }
-           
-            return datatable;
-        }
-        public OdbcDataAdapter llenarcamposEspecificos(string tabla, string campos, string condicion)
-        {
-            OdbcDataAdapter datatable = null;
-            try
-            {
-                string sql = "select "+ campos +" from " + tabla + " where"+ condicion +";";
-                datatable = new OdbcDataAdapter(sql, con.conexion());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-            }
+        
 
-            return datatable;
-        }
-
-        public OdbcDataAdapter filtro(string tabla, string tipodato, string dato)
-        {
-            OdbcDataAdapter datatable = null;
-            try
-            {
-                string sql = "select * from " + tabla + " where " + tipodato + " like ('" + dato + "%');";
-                datatable = new OdbcDataAdapter(sql, con.conexion());
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-            }
-            
-
-            return datatable;
-        }
-
-        public OdbcDataAdapter filtroproveedor(string tabla, string tipodato, string dato, string campos, string condicion)
-        {
-            OdbcDataAdapter datatable = null;
-            try
-            {
-                string sql = "select "+ campos +" from " + tabla + " where " + tipodato + " like ('" + dato + "%') and "+ condicion  +";";
-                datatable = new OdbcDataAdapter(sql, con.conexion());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-            }
-
-
-            return datatable;
-        }
-
-        public void actualizar(string dato, string condicion, string tabla)
-        {
-            try
-            {
-                string sql = "Update " + tabla + " " + dato + " where " + condicion;
-                OdbcCommand cmd = new OdbcCommand(sql, con.conexion());
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-            }
-
-
-        }
-
-        public void actualizartransaccion(string dato, string condicion, string tabla)
+        public void actualizartransaccion(string encabezado, string[] detalle)
         {
             
                 OdbcCommand command = new OdbcCommand();
@@ -107,11 +28,20 @@ namespace CapaModeloEF
                     command.Connection = conn;
                     command.Transaction = transaction;
 
-                    string sql = "Update " + tabla + " " + dato + " where " + condicion;           
-                    command.CommandText = sql;
+                             
+                    command.CommandText = encabezado;
                     command.ExecuteNonQuery();
 
-                    transaction.Commit();
+                for(int x = 0; x < detalle.Length-1; x++)
+                {
+                    Console.WriteLine("Detalle: " + detalle.Length);
+                    Console.WriteLine(detalle[x]);
+                 command.CommandText = detalle[x];
+                 command.ExecuteNonQuery();
+                }
+               
+
+                transaction.Commit();
                     Console.WriteLine("guardado en base de datos");
                     conn.Close();
             }
@@ -135,31 +65,64 @@ namespace CapaModeloEF
 
         }
 
-        public List<string> queryReportw(string id_aplicacion)
+        public string buscarid(string tabla, string tipo)
         {
-            List<string> datos = new List<string>();
-            string sql = "SELECT ruta, estado FROM tbl_regreporteria WHERE aplicacion = " + id_aplicacion + ";";
+            string dato = " ";
             try
             {
-                OdbcCommand command = new OdbcCommand(sql, con.conexion());
-                OdbcDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+
+                string sql = "select " + tipo + " from " + tabla + " Order by " + tipo + " Desc Limit 1";
+                OdbcCommand cmd = new OdbcCommand(sql, con.conexion());
+                OdbcDataReader lr = cmd.ExecuteReader();
+                while (lr.Read())
                 {
-                    if (reader.GetValue(1).ToString().ToLower().Equals("visible"))
-                    {
-                        datos.Add(reader.GetValue(0).ToString());
-                    }
-                    else
-                    {
-                        MessageBox.Show("El reporte esta con estado no visible");
-                    }
+                    dato = lr.GetString(0);
                 }
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message.ToString() + " \nError en obtener el almacen de la tabla de tbl_almacen"); }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: " + e);
+            }
+
+
+            return dato;
+        }
+
+        public int estadotabla(string tabla)
+        {
+            int dato = 0;
+            string sql = "select count(*) as total from " + tabla;
+            OdbcCommand cmd = new OdbcCommand(sql, con.conexion());
+            OdbcDataReader lr = cmd.ExecuteReader();
+            while (lr.Read())
+            {
+
+                dato = lr.GetInt32(0);
+
+
+            }
+            return dato;
+        }
+
+        public string[] campostextbox(string id)
+        {
+
+            string[] datos = new string[2];
+            string sql = "select nombreExam, precio from tbl_examen  where  pk_idExamen = '" + id + "'";
+            OdbcCommand cmd = new OdbcCommand(sql, con.conexion());
+            OdbcDataReader lr = cmd.ExecuteReader();
+            while (lr.Read())
+            {
+
+                datos[0] = lr.GetString(0);
+                datos[1] = lr.GetString(1);
+             
+
+            }
+
 
 
             return datos;
         }
-
     }
 }

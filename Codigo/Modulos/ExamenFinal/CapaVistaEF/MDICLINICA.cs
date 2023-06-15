@@ -68,13 +68,13 @@ namespace CapaVistaEF
 
         private void btnMoviminetos_Click(object sender, EventArgs e)
         {
-            /*//Codigo
-            Moviminetos_CxP moviminetos = new Moviminetos_CxP();
+            //Codigo
+            facturacion moviminetos = new facturacion();
             moviminetos.MdiParent = this;
             moviminetos.Show();
 
             //Ocultar submenu
-            hideSubMenu();*/
+            hideSubMenu();
         }
 
         private void btnreportemovimientos_Click(object sender, EventArgs e)
